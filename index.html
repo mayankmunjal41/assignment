@@ -31,7 +31,7 @@
 			border-radius: 12px;
 			background: #fafafa;
 			box-shadow: 0px 0px 0px 2px #21383e, 4px 6px 0px #05171b,
-				inset 2px 2px 0px #eeff84;
+				inset 2px 2px 0px rgb(228, 155, 73);
 			max-width: 30rem;
 			display: none;
 		}
@@ -50,16 +50,19 @@
 
 		#month-charts {
 			width: 50%;
+			margin: 0 auto;
 			display: flex;
 			flex-wrap: wrap;
-			margin: 0 auto;
-			gap: 20px;
-			justify-content: center;
+			justify-content: space-around;
+			align-items: flex-start;
 			margin-top: -20px;
+			gap: 20px;
 		}
 
-		#chart {
-			margin-top: -20px;
+		.month-chart {
+			/* Adjust width for each month */
+			/* width: 200px; */
+			margin-bottom: 20px;
 		}
 
 		.text {
@@ -83,8 +86,44 @@
 		}
 
 		@media only screen and (max-width: 1435px) {
-			#month-charts > svg {
+			.month-chart > svg {
 				width: 200px !important;
+			}
+		}
+
+		@media only screen and (max-width: 1590px) {
+			.month-chart > svg {
+				width: 223.5px !important;
+			}
+		}
+
+		@media only screen and (max-width: 576px) {
+			.legend {
+				flex-direction: column;
+			}
+
+			.title {
+				font-size: 32px;
+				width: 80%;
+			}
+
+			.text {
+				width: 80%;
+				font-size: 14px;
+			}
+
+			#month-charts {
+				width: 80%;
+			}
+
+			img {
+				margin-left: 0;
+				width: 270px;
+			}
+
+			.legend {
+				width: 80%;
+				font-size: 12px;
 			}
 		}
 	</style>
@@ -109,1527 +148,40 @@
 
 		<!-- <svg id="chart"></svg> -->
 		<script>
-			const data = [
-				{
-					Date: 1,
-					pm_all: 140,
-				},
-				{
-					Date: 1,
-					pm_all: 233,
-				},
-				{
-					Date: 1,
-					pm_all: 239,
-				},
-				{
-					Date: 1,
-					pm_all: 180,
-				},
-				{
-					Date: 1,
-					pm_all: 209,
-				},
-				{
-					Date: 1,
-					pm_all: 257,
-				},
-				{
-					Date: 1,
-					pm_all: 240,
-				},
-				{
-					Date: 1,
-					pm_all: 255,
-				},
-				{
-					Date: 1,
-					pm_all: 375,
-				},
-				{
-					Date: 1,
-					pm_all: 232,
-				},
-				{
-					Date: 1,
-					pm_all: 174,
-				},
-				{
-					Date: 1,
-					pm_all: 203,
-				},
-				{
-					Date: 1,
-					pm_all: 216,
-				},
-				{
-					Date: 1,
-					pm_all: 154,
-				},
-				{
-					Date: 1,
-					pm_all: 98,
-				},
-				{
-					Date: 1,
-					pm_all: 142,
-				},
-				{
-					Date: 1,
-					pm_all: 152,
-				},
-				{
-					Date: 1,
-					pm_all: 192,
-				},
-				{
-					Date: 1,
-					pm_all: 199,
-				},
-				{
-					Date: 1,
-					pm_all: 92,
-				},
-				{
-					Date: 1,
-					pm_all: 211,
-				},
-				{
-					Date: 1,
-					pm_all: 249,
-				},
-				{
-					Date: 1,
-					pm_all: 167,
-				},
-				{
-					Date: 1,
-					pm_all: 87,
-				},
-				{
-					Date: 1,
-					pm_all: 105,
-				},
-				{
-					Date: 1,
-					pm_all: 139,
-				},
-				{
-					Date: 1,
-					pm_all: 91,
-				},
-				{
-					Date: 1,
-					pm_all: 119,
-				},
-				{
-					Date: 1,
-					pm_all: 185,
-				},
-				{
-					Date: 1,
-					pm_all: 80,
-				},
-				{
-					Date: 1,
-					pm_all: 84,
-				},
-				{
-					Date: 2,
-					pm_all: 84,
-				},
-				{
-					Date: 2,
-					pm_all: 87,
-				},
-				{
-					Date: 2,
-					pm_all: 104,
-				},
-				{
-					Date: 2,
-					pm_all: 117,
-				},
-				{
-					Date: 2,
-					pm_all: 104,
-				},
-				{
-					Date: 2,
-					pm_all: 142,
-				},
-				{
-					Date: 2,
-					pm_all: 114,
-				},
-				{
-					Date: 2,
-					pm_all: 74,
-				},
-				{
-					Date: 2,
-					pm_all: 91,
-				},
-				{
-					Date: 2,
-					pm_all: 94,
-				},
-				{
-					Date: 2,
-					pm_all: 137,
-				},
-				{
-					Date: 2,
-					pm_all: 55,
-				},
-				{
-					Date: 2,
-					pm_all: 49,
-				},
-				{
-					Date: 2,
-					pm_all: 63,
-				},
-				{
-					Date: 2,
-					pm_all: 91,
-				},
-				{
-					Date: 2,
-					pm_all: 166,
-				},
-				{
-					Date: 2,
-					pm_all: 222,
-				},
-				{
-					Date: 2,
-					pm_all: 204,
-				},
-				{
-					Date: 2,
-					pm_all: 181,
-				},
-				{
-					Date: 2,
-					pm_all: 146,
-				},
-				{
-					Date: 2,
-					pm_all: 125,
-				},
-				{
-					Date: 2,
-					pm_all: 136,
-				},
-				{
-					Date: 2,
-					pm_all: 83,
-				},
-				{
-					Date: 2,
-					pm_all: 81,
-				},
-				{
-					Date: 2,
-					pm_all: 115,
-				},
-				{
-					Date: 2,
-					pm_all: 140,
-				},
-				{
-					Date: 2,
-					pm_all: 118,
-				},
-				{
-					Date: 2,
-					pm_all: 91,
-				},
-				{
-					Date: 3,
-					pm_all: 74,
-				},
-				{
-					Date: 3,
-					pm_all: 91,
-				},
-				{
-					Date: 3,
-					pm_all: 63,
-				},
-				{
-					Date: 3,
-					pm_all: 56,
-				},
-				{
-					Date: 3,
-					pm_all: 56,
-				},
-				{
-					Date: 3,
-					pm_all: 67,
-				},
-				{
-					Date: 3,
-					pm_all: 86,
-				},
-				{
-					Date: 3,
-					pm_all: 112,
-				},
-				{
-					Date: 3,
-					pm_all: 56,
-				},
-				{
-					Date: 3,
-					pm_all: 90,
-				},
-				{
-					Date: 3,
-					pm_all: 91,
-				},
-				{
-					Date: 3,
-					pm_all: 97,
-				},
-				{
-					Date: 3,
-					pm_all: 107,
-				},
-				{
-					Date: 3,
-					pm_all: 101,
-				},
-				{
-					Date: 3,
-					pm_all: 99,
-				},
-				{
-					Date: 3,
-					pm_all: 103,
-				},
-				{
-					Date: 3,
-					pm_all: 96,
-				},
-				{
-					Date: 3,
-					pm_all: 69,
-				},
-				{
-					Date: 3,
-					pm_all: 80,
-				},
-				{
-					Date: 3,
-					pm_all: 58,
-				},
-				{
-					Date: 3,
-					pm_all: 48,
-				},
-				{
-					Date: 3,
-					pm_all: 77,
-				},
-				{
-					Date: 3,
-					pm_all: 73,
-				},
-				{
-					Date: 3,
-					pm_all: 89,
-				},
-				{
-					Date: 3,
-					pm_all: 42,
-				},
-				{
-					Date: 3,
-					pm_all: 66,
-				},
-				{
-					Date: 3,
-					pm_all: 58,
-				},
-				{
-					Date: 3,
-					pm_all: 68,
-				},
-				{
-					Date: 3,
-					pm_all: 86,
-				},
-				{
-					Date: 3,
-					pm_all: 73,
-				},
-				{
-					Date: 3,
-					pm_all: 33,
-				},
-				{
-					Date: 4,
-					pm_all: 47,
-				},
-				{
-					Date: 4,
-					pm_all: 59,
-				},
-				{
-					Date: 4,
-					pm_all: 71,
-				},
-				{
-					Date: 4,
-					pm_all: 45,
-				},
-				{
-					Date: 4,
-					pm_all: 56,
-				},
-				{
-					Date: 4,
-					pm_all: 45,
-				},
-				{
-					Date: 4,
-					pm_all: 52,
-				},
-				{
-					Date: 4,
-					pm_all: 70,
-				},
-				{
-					Date: 4,
-					pm_all: 104,
-				},
-				{
-					Date: 4,
-					pm_all: 90,
-				},
-				{
-					Date: 4,
-					pm_all: 125,
-				},
-				{
-					Date: 4,
-					pm_all: 81,
-				},
-				{
-					Date: 4,
-					pm_all: 91,
-				},
-				{
-					Date: 4,
-					pm_all: 102,
-				},
-				{
-					Date: 4,
-					pm_all: 101,
-				},
-				{
-					Date: 4,
-					pm_all: 75,
-				},
-				{
-					Date: 4,
-					pm_all: 73,
-				},
-				{
-					Date: 4,
-					pm_all: 77,
-				},
-				{
-					Date: 4,
-					pm_all: 62,
-				},
-				{
-					Date: 4,
-					pm_all: 43,
-				},
-				{
-					Date: 4,
-					pm_all: 42,
-				},
-				{
-					Date: 4,
-					pm_all: 42,
-				},
-				{
-					Date: 4,
-					pm_all: 27,
-				},
-				{
-					Date: 4,
-					pm_all: 59,
-				},
-				{
-					Date: 4,
-					pm_all: 56,
-				},
-				{
-					Date: 4,
-					pm_all: 89,
-				},
-				{
-					Date: 4,
-					pm_all: 80,
-				},
-				{
-					Date: 4,
-					pm_all: 70,
-				},
-				{
-					Date: 4,
-					pm_all: 74,
-				},
-				{
-					Date: 4,
-					pm_all: 51,
-				},
-				{
-					Date: 5,
-					pm_all: 42,
-				},
-				{
-					Date: 5,
-					pm_all: 40,
-				},
-				{
-					Date: 5,
-					pm_all: 47,
-				},
-				{
-					Date: 5,
-					pm_all: 61,
-				},
-				{
-					Date: 5,
-					pm_all: 81,
-				},
-				{
-					Date: 5,
-					pm_all: 104,
-				},
-				{
-					Date: 5,
-					pm_all: 65,
-				},
-				{
-					Date: 5,
-					pm_all: 54,
-				},
-				{
-					Date: 5,
-					pm_all: 95,
-				},
-				{
-					Date: 5,
-					pm_all: 90,
-				},
-				{
-					Date: 5,
-					pm_all: 132,
-				},
-				{
-					Date: 5,
-					pm_all: 92,
-				},
-				{
-					Date: 5,
-					pm_all: 99,
-				},
-				{
-					Date: 5,
-					pm_all: 100,
-				},
-				{
-					Date: 5,
-					pm_all: 39,
-				},
-				{
-					Date: 5,
-					pm_all: 136,
-				},
-				{
-					Date: 5,
-					pm_all: 92,
-				},
-				{
-					Date: 5,
-					pm_all: 42,
-				},
-				{
-					Date: 5,
-					pm_all: 67,
-				},
-				{
-					Date: 5,
-					pm_all: 69,
-				},
-				{
-					Date: 5,
-					pm_all: 82,
-				},
-				{
-					Date: 5,
-					pm_all: 61,
-				},
-				{
-					Date: 5,
-					pm_all: 53,
-				},
-				{
-					Date: 5,
-					pm_all: 36,
-				},
-				{
-					Date: 5,
-					pm_all: 26,
-				},
-				{
-					Date: 5,
-					pm_all: 27,
-				},
-				{
-					Date: 5,
-					pm_all: 34,
-				},
-				{
-					Date: 5,
-					pm_all: 57,
-				},
-				{
-					Date: 5,
-					pm_all: 37,
-				},
-				{
-					Date: 5,
-					pm_all: 40,
-				},
-				{
-					Date: 5,
-					pm_all: 34,
-				},
-				{
-					Date: 6,
-					pm_all: 47,
-				},
-				{
-					Date: 6,
-					pm_all: 42,
-				},
-				{
-					Date: 6,
-					pm_all: 53,
-				},
-				{
-					Date: 6,
-					pm_all: 79,
-				},
-				{
-					Date: 6,
-					pm_all: 62,
-				},
-				{
-					Date: 6,
-					pm_all: 68,
-				},
-				{
-					Date: 6,
-					pm_all: 68,
-				},
-				{
-					Date: 6,
-					pm_all: 54,
-				},
-				{
-					Date: 6,
-					pm_all: 44,
-				},
-				{
-					Date: 6,
-					pm_all: 41,
-				},
-				{
-					Date: 6,
-					pm_all: 40,
-				},
-				{
-					Date: 6,
-					pm_all: 51,
-				},
-				{
-					Date: 6,
-					pm_all: 57,
-				},
-				{
-					Date: 6,
-					pm_all: 45,
-				},
-				{
-					Date: 6,
-					pm_all: 37,
-				},
-				{
-					Date: 6,
-					pm_all: 38,
-				},
-				{
-					Date: 6,
-					pm_all: 43,
-				},
-				{
-					Date: 6,
-					pm_all: 31,
-				},
-				{
-					Date: 6,
-					pm_all: 27,
-				},
-				{
-					Date: 6,
-					pm_all: 41,
-				},
-				{
-					Date: 6,
-					pm_all: 37,
-				},
-				{
-					Date: 6,
-					pm_all: 42,
-				},
-				{
-					Date: 6,
-					pm_all: 50,
-				},
-				{
-					Date: 6,
-					pm_all: 54,
-				},
-				{
-					Date: 6,
-					pm_all: 27,
-				},
-				{
-					Date: 6,
-					pm_all: 46,
-				},
-				{
-					Date: 6,
-					pm_all: 36,
-				},
-				{
-					Date: 6,
-					pm_all: 34,
-				},
-				{
-					Date: 6,
-					pm_all: 42,
-				},
-				{
-					Date: 6,
-					pm_all: 26,
-				},
-				{
-					Date: 7,
-					pm_all: 24,
-				},
-				{
-					Date: 7,
-					pm_all: 34,
-				},
-				{
-					Date: 7,
-					pm_all: 55,
-				},
-				{
-					Date: 7,
-					pm_all: 49,
-				},
-				{
-					Date: 7,
-					pm_all: 37,
-				},
-				{
-					Date: 7,
-					pm_all: 29,
-				},
-				{
-					Date: 7,
-					pm_all: 34,
-				},
-				{
-					Date: 7,
-					pm_all: 27,
-				},
-				{
-					Date: 7,
-					pm_all: 24,
-				},
-				{
-					Date: 7,
-					pm_all: 27,
-				},
-				{
-					Date: 7,
-					pm_all: 33,
-				},
-				{
-					Date: 7,
-					pm_all: 33,
-				},
-				{
-					Date: 7,
-					pm_all: 38,
-				},
-				{
-					Date: 7,
-					pm_all: 37,
-				},
-				{
-					Date: 7,
-					pm_all: 38,
-				},
-				{
-					Date: 7,
-					pm_all: 29,
-				},
-				{
-					Date: 7,
-					pm_all: 42,
-				},
-				{
-					Date: 7,
-					pm_all: 35,
-				},
-				{
-					Date: 7,
-					pm_all: 32,
-				},
-				{
-					Date: 7,
-					pm_all: 43,
-				},
-				{
-					Date: 7,
-					pm_all: 53,
-				},
-				{
-					Date: 7,
-					pm_all: 34,
-				},
-				{
-					Date: 7,
-					pm_all: 27,
-				},
-				{
-					Date: 7,
-					pm_all: 30,
-				},
-				{
-					Date: 7,
-					pm_all: 43,
-				},
-				{
-					Date: 7,
-					pm_all: 25,
-				},
-				{
-					Date: 7,
-					pm_all: 40,
-				},
-				{
-					Date: 7,
-					pm_all: 36,
-				},
-				{
-					Date: 7,
-					pm_all: 17,
-				},
-				{
-					Date: 7,
-					pm_all: 24,
-				},
-				{
-					Date: 7,
-					pm_all: 45,
-				},
-				{
-					Date: 8,
-					pm_all: 28,
-				},
-				{
-					Date: 8,
-					pm_all: 27,
-				},
-				{
-					Date: 8,
-					pm_all: 31,
-				},
-				{
-					Date: 8,
-					pm_all: 37,
-				},
-				{
-					Date: 8,
-					pm_all: 40,
-				},
-				{
-					Date: 8,
-					pm_all: 30,
-				},
-				{
-					Date: 8,
-					pm_all: 29,
-				},
-				{
-					Date: 8,
-					pm_all: 31,
-				},
-				{
-					Date: 8,
-					pm_all: 38,
-				},
-				{
-					Date: 8,
-					pm_all: 38,
-				},
-				{
-					Date: 8,
-					pm_all: 40,
-				},
-				{
-					Date: 8,
-					pm_all: 36,
-				},
-				{
-					Date: 8,
-					pm_all: 33,
-				},
-				{
-					Date: 8,
-					pm_all: 39,
-				},
-				{
-					Date: 8,
-					pm_all: 46,
-				},
-				{
-					Date: 8,
-					pm_all: 47,
-				},
-				{
-					Date: 8,
-					pm_all: 42,
-				},
-				{
-					Date: 8,
-					pm_all: 46,
-				},
-				{
-					Date: 8,
-					pm_all: 46,
-				},
-				{
-					Date: 8,
-					pm_all: 39,
-				},
-				{
-					Date: 8,
-					pm_all: 40,
-				},
-				{
-					Date: 8,
-					pm_all: 38,
-				},
-				{
-					Date: 8,
-					pm_all: 25,
-				},
-				{
-					Date: 8,
-					pm_all: 32,
-				},
-				{
-					Date: 8,
-					pm_all: 36,
-				},
-				{
-					Date: 8,
-					pm_all: 48,
-				},
-				{
-					Date: 8,
-					pm_all: 53,
-				},
-				{
-					Date: 8,
-					pm_all: 49,
-				},
-				{
-					Date: 8,
-					pm_all: 44,
-				},
-				{
-					Date: 8,
-					pm_all: 48,
-				},
-				{
-					Date: 8,
-					pm_all: 48,
-				},
-				{
-					Date: 9,
-					pm_all: 42,
-				},
-				{
-					Date: 9,
-					pm_all: 41,
-				},
-				{
-					Date: 9,
-					pm_all: 41,
-				},
-				{
-					Date: 9,
-					pm_all: 39,
-				},
-				{
-					Date: 9,
-					pm_all: 39,
-				},
-				{
-					Date: 9,
-					pm_all: 32,
-				},
-				{
-					Date: 9,
-					pm_all: 35,
-				},
-				{
-					Date: 9,
-					pm_all: 24,
-				},
-				{
-					Date: 9,
-					pm_all: 14,
-				},
-				{
-					Date: 9,
-					pm_all: 19,
-				},
-				{
-					Date: 9,
-					pm_all: 28,
-				},
-				{
-					Date: 9,
-					pm_all: 38,
-				},
-				{
-					Date: 9,
-					pm_all: 52,
-				},
-				{
-					Date: 9,
-					pm_all: 58,
-				},
-				{
-					Date: 9,
-					pm_all: 37,
-				},
-				{
-					Date: 9,
-					pm_all: 31,
-				},
-				{
-					Date: 9,
-					pm_all: 27,
-				},
-				{
-					Date: 9,
-					pm_all: 20,
-				},
-				{
-					Date: 9,
-					pm_all: 28,
-				},
-				{
-					Date: 9,
-					pm_all: 41,
-				},
-				{
-					Date: 9,
-					pm_all: 41,
-				},
-				{
-					Date: 9,
-					pm_all: 53,
-				},
-				{
-					Date: 9,
-					pm_all: 49,
-				},
-				{
-					Date: 9,
-					pm_all: 62,
-				},
-				{
-					Date: 9,
-					pm_all: 63,
-				},
-				{
-					Date: 9,
-					pm_all: 76,
-				},
-				{
-					Date: 9,
-					pm_all: 52,
-				},
-				{
-					Date: 9,
-					pm_all: 59,
-				},
-				{
-					Date: 9,
-					pm_all: 69,
-				},
-				{
-					Date: 9,
-					pm_all: 66,
-				},
-				{
-					Date: 10,
-					pm_all: 65,
-				},
-				{
-					Date: 10,
-					pm_all: 63,
-				},
-				{
-					Date: 10,
-					pm_all: 65,
-				},
-				{
-					Date: 10,
-					pm_all: 72,
-				},
-				{
-					Date: 10,
-					pm_all: 85,
-				},
-				{
-					Date: 10,
-					pm_all: 92,
-				},
-				{
-					Date: 10,
-					pm_all: 83,
-				},
-				{
-					Date: 10,
-					pm_all: 65,
-				},
-				{
-					Date: 10,
-					pm_all: 71,
-				},
-				{
-					Date: 10,
-					pm_all: 70,
-				},
-				{
-					Date: 10,
-					pm_all: 86,
-				},
-				{
-					Date: 10,
-					pm_all: 108,
-				},
-				{
-					Date: 10,
-					pm_all: 131,
-				},
-				{
-					Date: 10,
-					pm_all: 109,
-				},
-				{
-					Date: 10,
-					pm_all: 90,
-				},
-				{
-					Date: 10,
-					pm_all: 66,
-				},
-				{
-					Date: 10,
-					pm_all: 43,
-				},
-				{
-					Date: 10,
-					pm_all: 54,
-				},
-				{
-					Date: 10,
-					pm_all: 57,
-				},
-				{
-					Date: 10,
-					pm_all: 98,
-				},
-				{
-					Date: 10,
-					pm_all: 142,
-				},
-				{
-					Date: 10,
-					pm_all: 157,
-				},
-				{
-					Date: 10,
-					pm_all: 133,
-				},
-				{
-					Date: 10,
-					pm_all: 101,
-				},
-				{
-					Date: 10,
-					pm_all: 123,
-				},
-				{
-					Date: 10,
-					pm_all: 117,
-				},
-				{
-					Date: 10,
-					pm_all: 139,
-				},
-				{
-					Date: 10,
-					pm_all: 164,
-				},
-				{
-					Date: 10,
-					pm_all: 176,
-				},
-				{
-					Date: 10,
-					pm_all: 186,
-				},
-				{
-					Date: 10,
-					pm_all: 209,
-				},
-				{
-					Date: 11,
-					pm_all: 188,
-				},
-				{
-					Date: 11,
-					pm_all: 315,
-				},
-				{
-					Date: 11,
-					pm_all: 312,
-				},
-				{
-					Date: 11,
-					pm_all: 336,
-				},
-				{
-					Date: 11,
-					pm_all: 330,
-				},
-				{
-					Date: 11,
-					pm_all: 261,
-				},
-				{
-					Date: 11,
-					pm_all: 265,
-				},
-				{
-					Date: 11,
-					pm_all: 285,
-				},
-				{
-					Date: 11,
-					pm_all: 329,
-				},
-				{
-					Date: 11,
-					pm_all: 126,
-				},
-				{
-					Date: 11,
-					pm_all: 94,
-				},
-				{
-					Date: 11,
-					pm_all: 133,
-				},
-				{
-					Date: 11,
-					pm_all: 301,
-				},
-				{
-					Date: 11,
-					pm_all: 234,
-				},
-				{
-					Date: 11,
-					pm_all: 257,
-				},
-				{
-					Date: 11,
-					pm_all: 327,
-				},
-				{
-					Date: 11,
-					pm_all: 235,
-				},
-				{
-					Date: 11,
-					pm_all: 158,
-				},
-				{
-					Date: 11,
-					pm_all: 160,
-				},
-				{
-					Date: 11,
-					pm_all: 201,
-				},
-				{
-					Date: 11,
-					pm_all: 237,
-				},
-				{
-					Date: 11,
-					pm_all: 241,
-				},
-				{
-					Date: 11,
-					pm_all: 248,
-				},
-				{
-					Date: 11,
-					pm_all: 303,
-				},
-				{
-					Date: 11,
-					pm_all: 255,
-				},
-				{
-					Date: 11,
-					pm_all: 270,
-				},
-				{
-					Date: 11,
-					pm_all: 228,
-				},
-				{
-					Date: 11,
-					pm_all: 138,
-				},
-				{
-					Date: 11,
-					pm_all: 190,
-				},
-				{
-					Date: 12,
-					pm_all: 254,
-				},
-				{
-					Date: 12,
-					pm_all: 224,
-				},
-				{
-					Date: 12,
-					pm_all: 161,
-				},
-				{
-					Date: 12,
-					pm_all: 154,
-				},
-				{
-					Date: 12,
-					pm_all: 155,
-				},
-				{
-					Date: 12,
-					pm_all: 139,
-				},
-				{
-					Date: 12,
-					pm_all: 139,
-				},
-				{
-					Date: 12,
-					pm_all: 172,
-				},
-				{
-					Date: 12,
-					pm_all: 161,
-				},
-				{
-					Date: 12,
-					pm_all: 163,
-				},
-				{
-					Date: 12,
-					pm_all: 155,
-				},
-				{
-					Date: 12,
-					pm_all: 168,
-				},
-				{
-					Date: 12,
-					pm_all: 227,
-				},
-				{
-					Date: 12,
-					pm_all: 233,
-				},
-				{
-					Date: 12,
-					pm_all: 169,
-				},
-				{
-					Date: 12,
-					pm_all: 186,
-				},
-				{
-					Date: 12,
-					pm_all: 218,
-				},
-				{
-					Date: 12,
-					pm_all: 202,
-				},
-				{
-					Date: 12,
-					pm_all: 155,
-				},
-				{
-					Date: 12,
-					pm_all: 131,
-				},
-				{
-					Date: 12,
-					pm_all: 153,
-				},
-				{
-					Date: 12,
-					pm_all: 231,
-				},
-				{
-					Date: 12,
-					pm_all: 312,
-				},
-				{
-					Date: 12,
-					pm_all: 315,
-				},
-				{
-					Date: 12,
-					pm_all: 285,
-				},
-				{
-					Date: 12,
-					pm_all: 216,
-				},
-				{
-					Date: 12,
-					pm_all: 176,
-				},
-				{
-					Date: 12,
-					pm_all: 180,
-				},
-				{
-					Date: 12,
-					pm_all: 188,
-				},
-				{
-					Date: 12,
-					pm_all: 210,
-				},
-				{
-					Date: 12,
-					pm_all: 159,
-				},
-				{
-					Date: 12,
-					pm_all: 149,
-				},
-			];
-			const months = [
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December",
-			];
-			// Dimensions for the main chart
+			const parseDate = d3.timeParse("%d-%m-%Y %H:%M");
+
 			const width = 1000;
-			const height = 200; // Height of one row
-			const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-			const numCols = 365; // Total number of days in a year
-			const numRows = 1; // Display all data in one row
+			const height = 200;
+			const margin = { top: 20, right: 20, bottom: 20, left: 50 };
 
-			// Calculate cell dimensions for the main chart
-			const cellWidth = width / numCols;
-			const cellHeight = height;
+			d3.csv("pm_data_fix.csv").then(function (data) {
+				data.forEach(function (d) {
+					d.Date = parseDate(d["From Date"]); // Parse date
+					d.pm_all = Math.round(+d["PM2.5 average"]); // Convert PM2.5 to number
+				});
 
-			// Append SVG for the main chart
-			const svg = d3
-				.select("#chart")
-				.attr("width", width)
-				.attr("height", height + margin.top + margin.bottom);
+				const numCols = 365;
+				const cellWidth = width / numCols;
+				const cellHeight = height;
 
-			// Group for lines in the main chart
-			const linesGroup = svg
-				.append("g")
-				.attr("transform", `translate(${margin.left},${margin.top})`);
+				const tooltip = d3.select("#tooltip");
 
-			// Tooltip for the main chart
-			const tooltip = d3.select("#tooltip");
-
-			// Custom color scale function
-			function getColor(pollutionLevel) {
-				if (pollutionLevel <= 50) {
-					return "rgb(214, 207, 131)";
-				} else if (pollutionLevel >= 51 && pollutionLevel <= 100) {
-					return "rgb(255, 224, 160)";
-				} else if (pollutionLevel >= 101 && pollutionLevel <= 200) {
-					return "rgb(228, 155, 73)";
-				} else if (pollutionLevel >= 201 && pollutionLevel <= 300) {
-					return "rgb(189, 59, 39)";
-				} else if (pollutionLevel >= 301 && pollutionLevel <= 400) {
-					return "rgb(122, 19, 63)";
-				} else {
-					return "rgb(0, 0, 0)";
+				function getColor(pollutionLevel) {
+					if (pollutionLevel <= 50) {
+						return "rgb(214, 207, 131)";
+					} else if (pollutionLevel <= 100) {
+						return "rgb(255, 224, 160)";
+					} else if (pollutionLevel <= 200) {
+						return "rgb(228, 155, 73)";
+					} else if (pollutionLevel <= 300) {
+						return "rgb(189, 59, 39)";
+					} else if (pollutionLevel <= 400) {
+						return "rgb(122, 19, 63)";
+					} else {
+						return "rgb(0, 0, 0)";
+					}
 				}
-			}
 
-			// Draw lines for the main chart
-			data.forEach((d, i) => {
-				const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // Number of days in each month
 				const months = [
 					"January",
 					"February",
@@ -1644,108 +196,69 @@
 					"November",
 					"December",
 				];
-				let totalDays = 0;
-				let monthIndex = 0;
 
-				// Determine the month and day based on the index
-				for (let j = 0; j < monthDays.length; j++) {
-					if (i < totalDays + monthDays[j]) {
-						monthIndex = j;
-						break;
-					}
-					totalDays += monthDays[j];
-				}
+				months.forEach((monthName, monthIndex) => {
+					const monthData = data.filter(
+						(item) => item.Date.getMonth() === monthIndex
+					);
 
-				const month = months[monthIndex];
-				const day = i - totalDays + 1;
+					console.log(monthName, monthData.length); // Log month name and data length
 
-				const tooltipText = `${month} ${day < 10 ? "0" : ""}${day}, PM 2.5: ${
-					d.pm_all
-				}`;
+					const numDaysInMonth = new Date(2023, monthIndex + 1, 0).getDate(); // Get number of days in the month
 
-				const xPosition = i * cellWidth; // X position of the line
+					const monthWidth = 250;
+					const monthHeight = 40;
+					const monthMargin = { top: 20, right: 20, bottom: 20, left: 20 };
+					const monthNumCols = numDaysInMonth;
+					const monthCellWidth = monthWidth / monthNumCols;
+					const monthCellHeight = monthHeight;
 
-				const line = linesGroup
-					.append("line")
-					.attr("x1", xPosition)
-					.attr("y1", 0)
-					.attr("x2", xPosition)
-					.attr("y2", cellHeight)
-					.attr("stroke", getColor(d.pm_all))
-					.attr("stroke-width", cellWidth + 1) // Set the stroke width to match the cell width
-					.on("mouseover", function () {
-						const svgRect = svg.node().getBoundingClientRect(); // Get the bounding rectangle of the SVG container
-						tooltip.style("display", "block");
-						tooltip
-							.html(tooltipText)
-							.style("left", `${svgRect.left + d3.event.offsetX}px`) // Adjust tooltip position relative to the SVG container
-							.style("top", `${svgRect.top + d3.event.offsetY}px`); // Adjust tooltip position relative to the SVG container
-					})
-					.on("mouseout", function () {
-						tooltip.style("display", "none");
+					const monthSvg = d3
+						.select("#month-charts")
+						.append("div")
+						.attr("class", "month-chart")
+						.append("svg")
+						.attr("id", `month-chart-${monthIndex}`)
+						.attr("width", monthWidth)
+						.attr("height", monthHeight + monthMargin.top + monthMargin.bottom);
+
+					const monthLinesGroup = monthSvg
+						.append("g")
+						.attr("transform", `translate(0,40)`);
+
+					monthData.forEach((d, i) => {
+						const tooltipText = `${d.Date.toDateString()}, PM 2.5: ${d.pm_all}`;
+						const xPosition = i * monthCellWidth;
+						const line = monthLinesGroup
+							.append("line")
+							.attr("x1", i * monthCellWidth)
+							.attr("y1", 0)
+							.attr("x2", i * monthCellWidth)
+							.attr("y2", monthCellHeight)
+							.attr("stroke", getColor(d.pm_all))
+							.attr("stroke-width", monthCellWidth + 1)
+							.on("mouseover", function () {
+								const [mouseX, mouseY] = d3.pointer(event, monthSvg.node());
+								const svgRect = monthSvg.node().getBoundingClientRect();
+								tooltip.style("display", "block");
+								tooltip
+									.html(tooltipText)
+									.style("left", `${mouseX + svgRect.left}px`)
+									.style("top", `${svgRect.height + svgRect.top}px`);
+							})
+							.on("mouseout", function () {
+								tooltip.style("display", "none");
+							});
 					});
-			});
 
-			// Iterate over each month
-			for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-				const monthData = data.filter((item) => item.Date === monthIndex + 1); // Filter data for the current month
-				const monthWidth = 223.5; // Width for each month chart
-				const monthHeight = 40; // Height for each month chart
-				const monthMargin = { top: 20, right: 20, bottom: 20, left: 20 }; // Margin for each month chart
-				const monthNumCols = monthData.length; // Number of days in the current month
-				const monthCellWidth = monthWidth / monthNumCols; // Width of each cell in the current month chart
-				const monthCellHeight = monthHeight; // Height of each cell in the current month chart
-
-				// Append SVG for the current month chart
-				const monthSvg = d3
-					.select("#month-charts")
-					.append("svg")
-					.attr("id", `month-chart-${monthIndex}`)
-					.attr("width", monthWidth)
-					.attr("height", monthHeight + monthMargin.top + monthMargin.bottom);
-
-				// Group for lines in the current month chart
-				const monthLinesGroup = monthSvg
-					.append("g")
-					.attr("transform", `translate(0,40)`);
-
-				// Draw lines for the current month chart
-				monthData.forEach((d, i) => {
-					const tooltipText = `${months[monthIndex]} ${i + 1}, PM 2.5: ${
-						d.pm_all
-					}`;
-					const xPosition = i * monthCellWidth;
-					const line = monthLinesGroup
-						.append("line")
-						.attr("x1", i * monthCellWidth)
-						.attr("y1", 0)
-						.attr("x2", i * monthCellWidth)
-						.attr("y2", monthCellHeight)
-						.attr("stroke", getColor(d.pm_all))
-						.attr("stroke-width", monthCellWidth + 1) // Set the stroke width to match the cell width
-						.on("mouseover", function () {
-							const [mouseX, mouseY] = d3.pointer(event, monthSvg.node()); // Get the mouse coordinates relative to the current month SVG container
-							const svgRect = monthSvg.node().getBoundingClientRect(); // Get the bounding rectangle of the current month SVG container
-
-							tooltip.style("display", "block");
-							tooltip
-								.html(tooltipText)
-								.style("left", `${mouseX + svgRect.left}px`) // Position tooltip relative to the mouse cursor
-								.style("top", `${svgRect.height + svgRect.top}px`); // Position tooltip below the current month chart
-						})
-						.on("mouseout", function () {
-							tooltip.style("display", "none");
-						});
+					monthSvg
+						.append("text")
+						.attr("x", monthWidth / 2)
+						.attr("y", 20)
+						.attr("text-anchor", "middle")
+						.text(monthName);
 				});
-
-				// Add month label on top of the current month chart
-				monthSvg
-					.append("text")
-					.attr("x", monthWidth / 2)
-					.attr("y", 20) // Adjust the y position as needed to position the text above the chart
-					.attr("text-anchor", "middle")
-					.text(months[monthIndex]);
-			}
+			});
 		</script>
 	</body>
 </html>
